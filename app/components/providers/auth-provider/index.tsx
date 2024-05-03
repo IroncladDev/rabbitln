@@ -42,7 +42,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true)
   const [user, setUser] = useState<User | null>(null)
 
-  const { nostr } = useNostrContext()
+  const { nostr, isLoading: isNostrLoading } = useNostrContext()
 
   useEffect(() => {
     async function attemptLogin() {
@@ -91,7 +91,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (nostr) {
       attemptLogin()
     }
-  }, [nostr])
+  }, [nostr, isNostrLoading])
 
   return (
     <AuthContext.Provider

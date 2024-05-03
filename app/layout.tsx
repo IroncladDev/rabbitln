@@ -3,9 +3,9 @@ import "@fedibtc/ui/dist/index.css"
 import type { Metadata } from "next"
 import { Albert_Sans } from "next/font/google"
 import Fallback from "./components/fallback"
-import { AuthProvider } from "./components/providers/auth-provider"
 import { FederationProvider } from "./components/providers/federation-provider"
 import "./globals.css"
+import { AuthProvider } from "./components/providers/auth-provider"
 
 const albertSans = Albert_Sans({ subsets: ["latin"] })
 
@@ -24,15 +24,15 @@ export default function RootLayout({
     <html lang="en">
       <body className={albertSans.className}>
         <ToastProvider>
-          <WebLNProvider>
-            <NostrProvider>
-              <AuthProvider>
-                <FederationProvider>
+          <FederationProvider>
+            <WebLNProvider>
+              <NostrProvider>
+                <AuthProvider>
                   <Fallback>{children}</Fallback>
-                </FederationProvider>
-              </AuthProvider>
-            </NostrProvider>
-          </WebLNProvider>
+                </AuthProvider>
+              </NostrProvider>
+            </WebLNProvider>
+          </FederationProvider>
         </ToastProvider>
       </body>
     </html>

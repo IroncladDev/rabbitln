@@ -1,68 +1,44 @@
 "use client"
 
-import { Icon, Text, useNostrContext, useWebLNContext } from "@fedibtc/ui"
+import { Icon, useNostrContext, useWebLNContext } from "@fedibtc/ui"
 import Container from "./container"
-import { useAuth } from "./providers/auth-provider"
+// import { useAuth } from "./providers/auth-provider"
 import { useFederationContext } from "./providers/federation-provider"
 import { formatError } from "@/lib/errors"
+import { styled } from "react-tailwind-variants"
+import Flex from "./flex"
+import { Text } from "./ui/text"
+import { useAuth } from "./providers/auth-provider"
 
 export default function Fallback({ children }: { children: React.ReactNode }) {
   const { isLoading: isWeblnLoading, error: weblnError } = useWebLNContext()
   const { isLoading: isNostrLoading, error: nostrError } = useNostrContext()
-  const { isLoading: isAuthLoading, error: authError } = useAuth()
   const { isLoading: isFederationLoading, error: federationError } =
     useFederationContext()
+  const { isLoading: isAuthLoading, error: authError } = useAuth()
 
-  const error = weblnError || nostrError || authError || federationError
+  const errors = [weblnError, nostrError, federationError, authError]
+  const loaders = [
+    isWeblnLoading,
+    isNostrLoading,
+    isFederationLoading,
+    isAuthLoading,
+  ]
 
-  if (isWeblnLoading) {
+  const error = errors.find(Boolean)
+  const isLoading = loaders.find(Boolean)
+
+  if (isLoading) {
     return (
       <Container>
-        <Icon
-          icon="IconLoader2"
-          size="lg"
-          className="animate-spin text-lightGrey"
-        />
-        <Text>Initializing WebLN...</Text>
-      </Container>
-    )
-  }
-
-  if (isNostrLoading) {
-    return (
-      <Container>
-        <Icon
-          icon="IconLoader2"
-          size="lg"
-          className="animate-spin text-lightGrey"
-        />
-        <Text>Initializing Nostr...</Text>
-      </Container>
-    )
-  }
-
-  if (isAuthLoading) {
-    return (
-      <Container>
-        <Icon
-          icon="IconLoader2"
-          size="lg"
-          className="animate-spin text-lightGrey"
-        />
-        <Text>Authenticating...</Text>
-      </Container>
-    )
-  }
-
-  if (isFederationLoading) {
-    return (
-      <Container>
-        <Icon
-          icon="IconLoader2"
-          size="lg"
-          className="animate-spin text-lightGrey"
-        />
-        <Text>Connecting to Federation...</Text>
+        <Flex row align="center" gap={2}>
+          {loaders
+            .sort((a, b) => Number(a) - Number(b))
+            .map((l, i) => (
+              <LoadingDot loading={l} key={i} />
+            ))}
+        </Flex>
+        <Text>Loading... {loaders.filter(Boolean).length}</Text>
       </Container>
     )
   }
@@ -71,7 +47,7 @@ export default function Fallback({ children }: { children: React.ReactNode }) {
     return (
       <Container className="p-2">
         <Icon icon="IconCircleX" size="lg" className="text-lightGrey" />
-        <Text variant="h2" weight="bold">
+        <Text size="h2" weight="bold">
           An Error Occurred
         </Text>
         <Text className="text-center">{formatError(error)}</Text>
@@ -80,4 +56,15 @@ export default function Fallback({ children }: { children: React.ReactNode }) {
   }
 
   return <Container>{children}</Container>
+}
+
+const { LoadingDot } = {
+  LoadingDot: styled("div", {
+    base: "bg-white w-4 h-4 rounded-full",
+    variants: {
+      loading: {
+        true: "animate-ping",
+      },
+    },
+  }),
 }
