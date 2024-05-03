@@ -1,0 +1,46 @@
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <filter id="drop-shadow-filter-0" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%" height="200%" bx:preset="drop-shadow 1 0 0 5 1 #fff800">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="5"></feGaussianBlur>
+      <feOffset dx="0" dy="0"></feOffset>
+      <feComponentTransfer result="offsetblur">
+        <feFuncA id="spread-ctrl" type="linear" slope="2"></feFuncA>
+      </feComponentTransfer>
+      <feFlood flood-color="#fff800"></feFlood>
+      <feComposite in2="offsetblur" operator="in"></feComposite>
+      <feMerge>
+        <feMergeNode></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+      </feMerge>
+    </filter>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="129.137" y1="78.901" x2="129.137" y2="282.619" id="gradient-0" spreadMethod="pad" gradientTransform="matrix(1.000101, 0.005868, -0.002933, 0.499555, 0.218319, 38.727777)">
+      <stop offset="0" style=""></stop>
+      <stop offset="1" style="stop-color: rgb(232, 210, 107);"></stop>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="129.137" y1="78.901" x2="129.137" y2="282.619" id="gradient-1" spreadMethod="pad" gradientTransform="matrix(1.000101, 0.005868, -0.002933, 0.499555, 0.218325, 38.727781)">
+      <stop offset="0" style=""></stop>
+      <stop offset="1" style="stop-color: rgb(232, 210, 107);"></stop>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="257.797" y1="176.057" x2="257.797" y2="441.052" id="gradient-2" gradientTransform="matrix(0.566415, -0.82412, 1.036239, 0.712204, -174.67878, 302.460094)">
+      <stop offset="0" style="stop-color: rgb(90.98% 82.353% 41.961%)"></stop>
+      <stop offset="1" style=""></stop>
+    </linearGradient>
+  </defs>
+  <rect width="500" height="500" style="stroke-width: 8px; stroke-linecap: round; stroke-linejoin: round;"></rect>
+  <path d="M 121.088 88.975 Q 129.137 68.827 137.186 88.975 L 165.803 160.612 Q 173.852 180.76 165.803 200.908 L 137.186 272.545 Q 129.137 292.693 121.088 272.545 L 92.471 200.908 Q 84.422 180.76 92.471 160.612 Z" style="stroke: rgb(0, 0, 0); stroke-width: 6px; fill: url(#gradient-1); transform-origin: 129.137px 180.76px;" transform="matrix(0.817284, -0.576236, 0.55971, 0.828935, 73.493797, -69.212372)" bx:shape="n-gon 129.137 180.76 44.715 111.933 4 0.18 1@acffc2fe"></path>
+  <path d="M 232.623 182.665 Q 257.797 169.45 282.971 182.665 L 365.119 225.788 Q 390.293 239.003 390.293 265.432 L 390.293 351.678 Q 390.293 378.107 365.119 391.322 L 282.971 434.445 Q 257.797 447.66 232.623 434.445 L 150.475 391.322 Q 125.301 378.108 125.301 351.678 L 125.301 265.432 Q 125.301 239.003 150.475 225.788 Z" style="stroke: rgb(0, 0, 0); stroke-width: 6px; fill: url(#gradient-2);" bx:shape="n-gon 257.797 308.555 152.993 139.105 6 0.19 1@0329fdd5"></path>
+  <path d="M 121.088 88.975 Q 129.137 68.827 137.186 88.975 L 165.803 160.612 Q 173.852 180.76 165.803 200.908 L 137.186 272.545 Q 129.137 292.693 121.088 272.545 L 92.471 200.908 Q 84.422 180.76 92.471 160.612 Z" style="stroke: rgb(0, 0, 0); stroke-width: 6px; transform-box: fill-box; transform-origin: 50% 50%; fill: url(#gradient-0);" transform="matrix(0.817284, -0.576236, 0.55971, 0.828935, -35.933441, 14.145272)" bx:shape="n-gon 129.137 180.76 44.715 111.933 4 0.18 1@acffc2fe"></path>
+  <g transform="matrix(1.059974, 0, 0, 1.059974, -37.1222, -19.522005)">
+    <polyline style="fill: none; stroke-linejoin: round; stroke-linecap: round; stroke-width: 3px; stroke: rgba(52, 45, 11, 0.482);" points="302.408 367.144 293.558 390.043 274.701 398.162 276.94 411.234"></polyline>
+    <polyline style="fill: none; stroke-linejoin: round; stroke-linecap: round; stroke-width: 3px; stroke: rgba(52, 45, 11, 0.482);" points="313.91 353.383 316.062 369.356 327.663 383.168 328.097 409.491"></polyline>
+    <polyline style="fill: none; stroke-linejoin: round; stroke-linecap: round; stroke-width: 3px; stroke: rgba(52, 45, 11, 0.482);" points="311.036 291.487 325.23 307.981 333.109 335.464"></polyline>
+    <line style="fill: none; stroke-linejoin: round; stroke-linecap: round; stroke-width: 3px; stroke: rgba(52, 45, 11, 0.482);" x1="325.652" y1="307.952" x2="345.04" y2="325.137"></line>
+    <polyline style="fill: none; stroke-linejoin: round; stroke-linecap: round; stroke-width: 3px; stroke: rgba(52, 45, 11, 0.482);" points="290.083 276.648 310.18 290.089 314.262 353.528 301.114 366.543 310.432 392.496 297.639 415.662"></polyline>
+  </g>
+  <ellipse style="" cx="296.436" cy="332.735" rx="12.72" ry="12.72"></ellipse>
+  <ellipse style="" cx="378.811" cy="293.098" rx="12.72" ry="12.72"></ellipse>
+  <line style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-width: 8px; stroke-linecap: round; stroke-linejoin: round;" x1="342.738" y1="344.871" x2="342.347" y2="386.492"></line>
+  <line style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-width: 8px; stroke-linecap: round; stroke-linejoin: round;" x1="324.263" y1="375.64" x2="359.2" y2="356.768"></line>
+  <line style="fill: rgb(216, 216, 216); stroke: rgb(255, 255, 255); filter: url(#drop-shadow-filter-0); stroke-opacity: 0.96; stroke-linecap: round; stroke-linejoin: round; stroke-width: 10px;" x1="296.493" y1="333.885" x2="506.035" y2="501.357"></line>
+  <line style="fill: rgb(216, 216, 216); stroke: rgb(255, 255, 255); stroke-opacity: 0.96; filter: url(#drop-shadow-filter-0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 10px;" x1="378.236" y1="292.853" x2="515.085" y2="401.027"></line>
+</svg>

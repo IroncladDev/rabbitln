@@ -1,0 +1,14 @@
+version: "3.1"
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: rabbitln
+      POSTGRES_DB: db
+    ports:
+      - "25434:5432"
+    volumes:
+      - ./.data:/var/lib/postgresql/data

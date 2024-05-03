@@ -1,0 +1,20 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1714600197955,
+      "tag": "0000_fantastic_norrin_radd",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1714651884454,
+      "tag": "0001_lucky_hulk",
+      "breakpoints": true
+    }
+  ]
+}
