@@ -1,24 +1,30 @@
-# Fedi Mod Boilerplate
+# RabbitLN
 
-A template for building Fedi Mods.
+This will be an SPA
 
-## Development
+## Primary Features
 
-1. Clone the repository
-   ```bash
-   git clone https://github.com/fedibtc/ModBoilerplate.git
-   ```
-2. Ensure you have [Nix installed](https://nixos.org/download)
-3. Open a shell and run `nix develop`
-4. Run `just dev` to start the development server
+- Speech/image with GPT-4 vision. One just speech, one multimodal
+- Pay for usage with sats (fedimint clientd)
 
-## Production
+## Secondary Features
 
-1. Set the `POSTGRES_URL` environment variable to a production database if you're using it
-2. Create a production build with `bun run build`
-3. Server the build with `bun run start`
+- AI Modes
+- QR Code recognition and lookup
+- Image quality mode (single/burst) & quality settings
+- Fund withdrawal
 
-## Links
+## Screens
 
-- [Documentation](https://fedibtc.github.io/fedi-docs/docs/mods/developers/intro)
-- [Github](https://github.com/fedibtc/ModBoilerplate)
+- Loading screen (done)
+- Home screen (with time, speech button on left, eye button on right) (45mins). Hold button to speak or multimodal (timer/ring indication). Blur out buttons if user has no balance, show topup button in the bottom.
+- Settings screen. Icon in upper-right corner of home screen. For modes / balance settings. (1.5h)
+- Speech Listening screen. Audio visualizer (maybe). Once you release, switch to result screen with loading indicator (1.5h)
+- Multimodal screen. Audio visualizer and camera. Once you release, switch to result screen with loading indicator (1h)
+- Result screen. Takes a query param maybe, then uses a server component to fetch the result or uses an API route to stream with the vercel api sdk (3h). Shows one sentence at a time or follows along like closed captions.
+- QR scanner integration. Recognizes bolt11 invoices and bitcoin addresses synchronously, can look them up on mempool or decode them. Sends them as a query param to the result screen. Result screen can call webln/ecash from Fedi to pay it. If not, can take a qr value and decode/inspect it. (4h)
+- Conversations carry on as long as you're on the result screen for both multimodal **and** normal chat. Moving back clears the state.
+
+## Polish Items
+
+- Select time (military/normal)

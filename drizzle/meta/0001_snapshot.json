@@ -1,6 +1,6 @@
 {
-  "id": "c8dd0af7-ceae-4def-aa9f-cf2dcd8c8bb1",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "95cc0649-d591-401e-a59b-5602eec8ca31",
+  "prevId": "32a1eaf6-2f4e-4631-a3c7-0ce3b4529d4d",
   "version": "5",
   "dialect": "pg",
   "tables": {
@@ -33,7 +33,15 @@
           "notNull": true
         }
       },
-      "indexes": {},
+      "indexes": {
+        "idx_session_user_id": {
+          "name": "idx_session_user_id",
+          "columns": [
+            "userId"
+          ],
+          "isUnique": true
+        }
+      },
       "foreignKeys": {
         "Session_userId_User_id_fk": {
           "name": "Session_userId_User_id_fk",
@@ -45,8 +53,8 @@
           "columnsTo": [
             "id"
           ],
-          "onDelete": "restrict",
-          "onUpdate": "cascade"
+          "onDelete": "no action",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -96,6 +104,13 @@
           "type": "text",
           "primaryKey": false,
           "notNull": true
+        },
+        "balance": {
+          "name": "balance",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
         },
         "timeCreated": {
           "name": "timeCreated",

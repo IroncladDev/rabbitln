@@ -6,6 +6,8 @@ import Fallback from "./components/fallback"
 import { FederationProvider } from "./components/providers/federation-provider"
 import "./globals.css"
 import { AuthProvider } from "./components/providers/auth-provider"
+import { AppStateProvider } from "./components/providers/app-state-provider"
+import { MediaPermissionProvider } from "./components/providers/media-permissions-provider"
 
 const albertSans = Albert_Sans({ subsets: ["latin"] })
 
@@ -23,17 +25,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={albertSans.className}>
-        <ToastProvider>
-          <FederationProvider>
-            <WebLNProvider>
-              <NostrProvider>
-                <AuthProvider>
-                  <Fallback>{children}</Fallback>
-                </AuthProvider>
-              </NostrProvider>
-            </WebLNProvider>
-          </FederationProvider>
-        </ToastProvider>
+        <AppStateProvider>
+          <MediaPermissionProvider>
+            <ToastProvider>
+              <FederationProvider>
+                <WebLNProvider>
+                  <NostrProvider>
+                    <AuthProvider>
+                      <Fallback>{children}</Fallback>
+                    </AuthProvider>
+                  </NostrProvider>
+                </WebLNProvider>
+              </FederationProvider>
+            </ToastProvider>
+          </MediaPermissionProvider>
+        </AppStateProvider>
       </body>
     </html>
   )

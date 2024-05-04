@@ -3,31 +3,30 @@
 import { useNostrContext } from "@fedibtc/ui"
 import { Event, UnsignedEvent, getEventHash } from "nostr-tools"
 import { createContext, useContext, useEffect, useState } from "react"
-import { connect, login } from "./actions"
-import { User } from "@/drizzle/schema"
+import { User } from "@/lib/drizzle/schema"
+import { refetchUser } from "./actions/refetchuser"
+import { connect } from "./actions/connect"
+import { login } from "./actions/login"
 
-interface AuthContextType {
-  isLoading: boolean
-  error: Error | null
-  user: User | null
-}
-
-interface AuthContextLoading extends AuthContextType {
+interface AuthContextLoading {
   isLoading: true
   error: null
   user: null
+  refetch: () => void
 }
 
-interface AuthContextError extends AuthContextType {
+interface AuthContextError {
   isLoading: false
   error: Error
   user: null
+  refetch: () => void
 }
 
-interface AuthContextUser extends AuthContextType {
+interface AuthContextUser {
   isLoading: false
   error: null
   user: User
+  refetch: () => void
 }
 
 export type AuthContextValue =
@@ -43,6 +42,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
 
   const { nostr, isLoading: isNostrLoading } = useNostrContext()
+
+  const refetch = () => {
+    refetchUser().then(res => {
+      if (res.success) setUser(res.user)
+    })
+  }
 
   useEffect(() => {
     async function attemptLogin() {
@@ -100,6 +105,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           isLoading,
           error,
           user,
+          refetch,
         } as AuthContextValue
       }
     >

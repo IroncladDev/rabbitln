@@ -5,15 +5,15 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1714600197955,
-      "tag": "0000_fantastic_norrin_radd",
+      "when": 1714779493454,
+      "tag": "0000_common_rockslide",
       "breakpoints": true
     },
     {
       "idx": 1,
       "version": "5",
-      "when": 1714651884454,
-      "tag": "0001_lucky_hulk",
+      "when": 1714780320809,
+      "tag": "0001_uneven_puck",
       "breakpoints": true
     }
   ]

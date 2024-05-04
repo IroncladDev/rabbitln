@@ -1,12 +1,16 @@
 "use client"
 
-import Container from "./components/container"
-import { Text } from "./components/ui/text"
+import { useAppState } from "./components/providers/app-state-provider"
+import Home from "./home"
+import { ScreenName } from "./types/state"
 
 export default function Index() {
-  return (
-    <Container className="p-2 items-center">
-      <Text size="h2">RabbitLN</Text>
-    </Container>
-  )
+  const { screen } = useAppState()
+
+  switch (screen) {
+    case ScreenName.home:
+      return <Home />
+    default:
+      return null
+  }
 }

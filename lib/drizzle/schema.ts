@@ -1,4 +1,11 @@
-import { pgTable, timestamp, text, integer, serial } from "drizzle-orm/pg-core"
+import {
+  pgTable,
+  timestamp,
+  text,
+  integer,
+  serial,
+  uniqueIndex,
+} from "drizzle-orm/pg-core"
 import { InferSelectModel, relations } from "drizzle-orm"
 import { createId } from "@paralleldrive/cuid2"
 
@@ -6,6 +13,7 @@ import { createId } from "@paralleldrive/cuid2"
 export const user = pgTable("User", {
   id: serial("id").primaryKey().notNull().unique(),
   pubkey: text("pubkey").notNull().unique(),
+  balance: integer("balance").notNull().default(0),
   timeCreated: timestamp("timeCreated", {
     precision: 3,
     withTimezone: true,
@@ -15,21 +23,27 @@ export const user = pgTable("User", {
     .notNull(),
 })
 
-export const session = pgTable("Session", {
-  id: serial("id").primaryKey().notNull().unique(),
-  userId: integer("userId")
-    .notNull()
-    .references(() => user.id, { onDelete: "restrict", onUpdate: "cascade" })
-    .unique(),
-  token: text("token")
-    .notNull()
-    .unique()
-    .$default(() => createId()),
-  sigToken: text("sigToken")
-    .notNull()
-    .unique()
-    .$default(() => createId()),
-})
+export const session = pgTable(
+  "Session",
+  {
+    id: serial("id").primaryKey().notNull().unique(),
+    userId: integer("userId")
+      .notNull()
+      .references(() => user.id)
+      .unique(),
+    token: text("token")
+      .notNull()
+      .unique()
+      .$default(() => createId()),
+    sigToken: text("sigToken")
+      .notNull()
+      .unique()
+      .$default(() => createId()),
+  },
+  table => ({
+    userIdIndex: uniqueIndex("idx_session_user_id").on(table.userId),
+  }),
+)
 
 /** Relations */
 export const sessionRelations = relations(session, ({ one }) => ({

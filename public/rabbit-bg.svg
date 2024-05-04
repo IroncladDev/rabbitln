@@ -1,0 +1,32 @@
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <filter id="drop-shadow-filter-0" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%" height="200%" bx:preset="drop-shadow 1 0 0 8 1 #ffda4a">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="8"></feGaussianBlur>
+      <feOffset dx="0" dy="0"></feOffset>
+      <feComponentTransfer result="offsetblur">
+        <feFuncA id="spread-ctrl" type="linear" slope="2"></feFuncA>
+      </feComponentTransfer>
+      <feFlood flood-color="#ffda4a"></feFlood>
+      <feComposite in2="offsetblur" operator="in"></feComposite>
+      <feMerge>
+        <feMergeNode></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+      </feMerge>
+    </filter>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="40.758" y1="268.402" x2="40.758" y2="500.181" id="gradient-2" gradientTransform="matrix(0.111373, 0.993779, -0.342436, 0.038377, 166.697168, 341.729858)">
+      <stop offset="0" style="stop-color: rgba(0, 0, 0, 0);"></stop>
+      <stop offset="1" style=""></stop>
+    </linearGradient>
+  </defs>
+  <rect width="500" height="500" style=""></rect>
+  <rect x="577.476" y="93.615" width="87.377" height="92.143" style="stroke-width: 8px; stroke: rgb(0, 0, 0); filter: none; fill: rgb(255, 234, 145); transform-origin: 675.384px 162.684px;" rx="13.157" ry="13.157" transform="matrix(-0.105793, 0.994388, 1.102258, -0.908114, -364.297059, -18.067911)"></rect>
+  <path d="M 240.805 166.522 Q 261.459 157.146 282.113 166.522 L 355.551 199.86 Q 376.206 209.237 376.206 227.989 L 376.206 294.665 Q 376.206 313.417 355.551 322.794 L 282.113 356.132 Q 261.459 365.508 240.805 356.132 L 167.367 322.794 Q 146.712 313.418 146.712 294.665 L 146.712 227.989 Q 146.712 209.236 167.367 199.86 Z" style="stroke-width: 8px; stroke: rgb(0, 0, 0); filter: none; fill: rgb(255, 234, 145);" bx:shape="n-gon 261.459 261.327 132.498 104.181 6 0.18 1@df2a60d7"></path>
+  <rect x="577.476" y="93.615" width="87.377" height="92.143" style="stroke-width: 8px; stroke: rgb(0, 0, 0); filter: none; fill: rgb(255, 234, 145); transform-origin: 621.163px 139.686px;" rx="13.157" ry="13.157" transform="matrix(-0.105793, 0.994388, 1.102257, -0.908113, -223.875971, 28.922264)"></rect>
+  <ellipse style="" cx="241.601" cy="279.051" rx="8.517" ry="8.517"></ellipse>
+  <ellipse style="" cx="157.096" cy="246.809" rx="8.517" ry="8.517"></ellipse>
+  <line style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-width: 6px;" x1="194.965" y1="283.88" x2="193.59" y2="324.324"></line>
+  <line style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-width: 6px;" x1="175.743" y1="297.269" x2="214.923" y2="314.514"></line>
+  <line style="fill: rgb(216, 216, 216); stroke-width: 5px; stroke-linecap: round; filter: url(#drop-shadow-filter-0); stroke: rgb(255, 255, 255);" x1="241.167" y1="279.021" x2="-0.702" y2="440.097"></line>
+  <line style="fill: rgb(216, 216, 216); stroke-width: 5px; stroke-linecap: round; filter: url(#drop-shadow-filter-0); stroke: rgb(255, 255, 255);" x1="156.84" y1="245.989" x2="-1.091" y2="323.987"></line>
+  <rect x="-0.351" y="268.402" width="82.218" height="231.779" style="fill: url(#gradient-2);"></rect>
+</svg>

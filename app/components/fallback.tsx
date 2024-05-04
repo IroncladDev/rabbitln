@@ -1,14 +1,14 @@
 "use client"
 
-import { Icon, useNostrContext, useWebLNContext } from "@fedibtc/ui"
+import { Icon, IconKey, useNostrContext, useWebLNContext } from "@fedibtc/ui"
 import Container from "./container"
-// import { useAuth } from "./providers/auth-provider"
 import { useFederationContext } from "./providers/federation-provider"
 import { formatError } from "@/lib/errors"
 import { styled } from "react-tailwind-variants"
 import Flex from "./flex"
 import { Text } from "./ui/text"
 import { useAuth } from "./providers/auth-provider"
+import { useMediaPermissions } from "./providers/media-permissions-provider"
 
 export default function Fallback({ children }: { children: React.ReactNode }) {
   const { isLoading: isWeblnLoading, error: weblnError } = useWebLNContext()
@@ -16,41 +16,98 @@ export default function Fallback({ children }: { children: React.ReactNode }) {
   const { isLoading: isFederationLoading, error: federationError } =
     useFederationContext()
   const { isLoading: isAuthLoading, error: authError } = useAuth()
+  const { isLoading: isPermissionsLoading, error: permissionsError } =
+    useMediaPermissions()
 
-  const errors = [weblnError, nostrError, federationError, authError]
+  const errors = [
+    weblnError,
+    nostrError,
+    federationError,
+    authError,
+    permissionsError,
+  ]
   const loaders = [
-    isWeblnLoading,
-    isNostrLoading,
-    isFederationLoading,
-    isAuthLoading,
+    {
+      loading: isWeblnLoading,
+      label: "WebLN",
+      icon: "IconBolt" as IconKey,
+      color: "#fcd34d",
+    },
+    {
+      loading: isNostrLoading,
+      label: "Nostr",
+      icon: "IconEye" as IconKey,
+      color: "#7e22cc",
+    },
+    {
+      loading: isFederationLoading,
+      label: "Fedi",
+      icon: "IconWorld" as IconKey,
+      color: "#d97706",
+    },
+    {
+      loading: isPermissionsLoading,
+      label: "Perms",
+      icon: "IconMicrophone" as IconKey,
+      color: "#06b6d4",
+    },
+    {
+      loading: isAuthLoading,
+      label: "Auth",
+      icon: "IconLock" as IconKey,
+      color: "#22c55e",
+    },
   ]
 
   const error = errors.find(Boolean)
-  const isLoading = loaders.find(Boolean)
+  const isLoading = loaders.find(l => l.loading)
 
-  if (isLoading) {
+  if (isLoading?.loading) {
     return (
       <Container>
-        <Flex row align="center" gap={2}>
-          {loaders
-            .sort((a, b) => Number(a) - Number(b))
-            .map((l, i) => (
-              <LoadingDot loading={l} key={i} />
-            ))}
-        </Flex>
-        <Text>Loading... {loaders.filter(Boolean).length}</Text>
+        <Wrapper>
+          <Spinner />
+          <Flex col gap={4} center className="absolute inset-2">
+            <Flex row align="center" gap={4}>
+              {loaders
+                .sort((a, b) => Number(a.loading) - Number(b.loading))
+                .map((l, i) => (
+                  <Flex col gap={1} align="center" key={i}>
+                    <Icon
+                      icon={l.icon}
+                      className="w-4 h-4"
+                      style={{ color: l.color }}
+                    />
+                    <LoadingDot loading={l.loading} />
+                    <Text size="xxs" color="dimmest">
+                      {l.label}
+                    </Text>
+                  </Flex>
+                ))}
+            </Flex>
+            <Text weight="medium" size="lg">
+              Connecting...
+            </Text>
+          </Flex>
+        </Wrapper>
       </Container>
     )
   }
 
   if (error) {
     return (
-      <Container className="p-2">
-        <Icon icon="IconCircleX" size="lg" className="text-lightGrey" />
-        <Text size="h2" weight="bold">
-          An Error Occurred
-        </Text>
-        <Text className="text-center">{formatError(error)}</Text>
+      <Container>
+        <Wrapper>
+          <ErrorIndicator />
+          <Flex col gap={4} center className="absolute inset-4">
+            <Text weight="medium" size="h2">
+              An Error Occurred
+            </Text>
+            <Text size="lg" color="dimmer" multiline center>
+              {formatError(error)}
+            </Text>
+          </Flex>
+        </Wrapper>
       </Container>
     )
   }
@@ -58,13 +115,22 @@ export default function Fallback({ children }: { children: React.ReactNode }) {
   return <Container>{children}</Container>
 }
 
-const { LoadingDot } = {
+const { LoadingDot, Wrapper, Spinner, ErrorIndicator } = {
   LoadingDot: styled("div", {
-    base: "bg-white w-4 h-4 rounded-full",
+    base: "bg-white w-6 h-2 rounded-full transition-colors",
     variants: {
       loading: {
-        true: "animate-ping",
+        true: "bg-neutral-600 animate-pulse",
       },
     },
+  }),
+  Wrapper: styled("div", {
+    base: "relative w-[320px] h-[320px] flex",
+  }),
+  Spinner: styled("div", {
+    base: "absolute w-full h-full rounded-full border-4 border-neutral-800 border-b-transparent animate-spin",
+  }),
+  ErrorIndicator: styled("div", {
+    base: "absolute w-full h-full rounded-full border-4 border-red-900",
   }),
 }
